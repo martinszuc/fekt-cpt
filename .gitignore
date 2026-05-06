@@ -1,6 +1,7 @@
 .idea
 fekt-cpt.iml
-# === Obsidian personal / volatile files ===
+# Obsidian personal files
+.obsidian/graph.json
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/cache/

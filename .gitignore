@@ -7,6 +7,7 @@ fekt-cpt.iml
 .obsidian/cache/
 .obsidian/backup/
 .obsidian/plugins/
+sources/
 
 # Optional: ignore plugin data folders (uncomment if you ever store API keys)
 # .obsidian/plugins/*/data/

@@ -13,6 +13,10 @@ Personal Obsidian knowledge base for my cryptography studies (FEKT?).
 - Spaced Repetition
 - Templater
 
+## Graph View
+
+![Obsidian Graph View](assets/obsidian-graph-view.jpg)
+
 ## Structure
 - `Home.md` → main index / map of content
 - `Day 1 - Groups, Phi & Generators.md` → Day 1 MOC

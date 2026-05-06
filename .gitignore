@@ -6,6 +6,7 @@ fekt-cpt.iml
 .obsidian/workspace-mobile.json
 .obsidian/cache/
 .obsidian/backup/
+.obsidian/plugins/
 
 # Optional: ignore plugin data folders (uncomment if you ever store API keys)
 # .obsidian/plugins/*/data/

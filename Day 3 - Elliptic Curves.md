@@ -1,6 +1,8 @@
 ---
-tags: [moc, day3]
-aliases: [day3, day3_elliptic_curves]
+tags: [cryptography, cpt, moc, day3]
+aliases:
+  - day3
+  - day3_elliptic_curves
 ---
 
 # Day 3 — Elliptic Curve Cryptography

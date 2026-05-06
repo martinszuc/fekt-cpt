@@ -1,9 +1,5 @@
 ---
-tags:
-  - cryptography
-  - math
-  - reference
-  - day1
+tags: [cryptography, cpt, concept, day1]
 aliases:
   - GCD
   - Greatest Common Divisor

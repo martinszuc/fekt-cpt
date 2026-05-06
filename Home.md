@@ -1,8 +1,5 @@
 ---
-tags:
-  - moc
-  - cryptography
-  - index
+tags: [cryptography, cpt, moc]
 aliases:
   - Start Here
   - Index

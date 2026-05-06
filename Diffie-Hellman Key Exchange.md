@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, asymmetric, key-exchange]
+tags: [cryptography, cpt, concept, day2]
 aliases: [Diffie-Hellman, DH]
 related: "[[Generators in Cryptography]], [[Group Theory Fundamentals]]"
 ---

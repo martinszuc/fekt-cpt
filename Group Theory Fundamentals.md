@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, math, groups]
+tags: [cryptography, cpt, concept, day1]
 aliases: [Group Theory, Cyclic Groups]
 related: "[[Euler's Totient Function (Phi)]], [[Generators in Cryptography]]"
 ---

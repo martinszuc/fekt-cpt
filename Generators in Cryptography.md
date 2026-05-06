@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, math, groups]
+tags: [cryptography, cpt, concept, day1]
 aliases: [Generators, Primitive Roots]
 related: "[[Group Theory Fundamentals]], [[Diffie-Hellman Key Exchange]]"
 ---

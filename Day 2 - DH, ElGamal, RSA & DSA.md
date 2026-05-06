@@ -1,5 +1,5 @@
 ---
-tags: [moc, day2]
+tags: [cryptography, cpt, moc, day2]
 aliases: [day2, day2_DH_ElGamal_RSA_DSA]
 ---
 

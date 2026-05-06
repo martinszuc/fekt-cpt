@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, asymmetric, encryption]
+tags: [cryptography, cpt, concept, day2]
 aliases: [ElGamal]
 related: "[[Diffie-Hellman Key Exchange]], [[Generators in Cryptography]]"
 ---

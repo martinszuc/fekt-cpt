@@ -1,8 +1,5 @@
 ---
-tags:
-  - reference
-  - equations
-  - cheatsheet
+tags: [cryptography, cpt, reference, exam-topic]
 aliases:
   - Equations
   - Formulas
@@ -228,3 +225,160 @@ Order of P = smallest k s.t.  k·P = ∞
 | Divisor rule | ord(P) divides ord(E(Fp)) |
 | Only test | divisors of |E(Fp)|, smallest first |
 | Generator | point with order = |E(Fp)| |
+
+---
+
+## Bilinear Pairing Properties
+→ Full notes: [[Day 4 - Pairings]]
+
+`e : G₁ × G₂ → Gᴛ`  Symmetric if G₁ = G₂.
+
+| # | Property | Formula |
+|---|---|---|
+| 1 | Identity | `e(P, ∞) = e(∞, Q) = 1` |
+| 2 | Inverse | `e(-P, Q) = e(P, Q)⁻¹ = e(P, -Q)` |
+| 3 | Scalar | `e(aP, Q) = e(P, Q)ᵃ = e(P, aQ)` |
+| 4 | Bilinear | `e(aP, bQ) = e(P, Q)^(ab)` |
+| 5 | Additive | `e(P₁+P₂, Q) = e(P₁,Q)·e(P₂,Q)` |
+
+---
+
+## MOV Attack
+→ Full notes: [[Day 4 - Pairings]]
+
+**Known:** `e(P, P) = g`, `e(P, kP) = x`
+
+**Find k:** compute `g¹, g², g³, …` in Gᴛ until finding `x`. Then `k` is the matching exponent.
+
+Uses: `e(P, kP) = e(P, P)^k = g^k`
+
+---
+
+## Short Boneh-Boyen (SBB) Signature
+→ Full notes: [[Day 4 - Pairings]]
+
+**Setup:** `e: G₁×G₂→Gᴛ`, `P ∈ G₁`, `R ∈ G₂`, `sk=a`, `pk=aR`
+
+```
+Sign:    S = (a + m)⁻¹ · P          (inverse is mod group order q)
+Verify:  e(m·S, R) · e(S, pk) = e(P, R)
+```
+
+---
+
+## Pedersen Commitment
+→ Full notes: [[Day 5 - Commitments]]
+
+**Parameters:** prime `p`, generators `g₁, g₂` of `Z*_p`, message `w`, randomness `o`
+
+```
+Commit:  c = g₁^w · g₂^o mod p
+Open:    reveal (w, o); verifier recomputes
+```
+
+| Property | Strength | Why |
+|---|---|---|
+| Hiding | Perfect | linear equation in (w,o) has ∞ solutions |
+| Binding | Computational | finding 2 openings ≡ solving DLP |
+
+---
+
+## ElGamal Commitment
+→ Full notes: [[Day 5 - Commitments]]
+
+```
+c = (c₁, c₂) = (g₁^o, g₁^w · g₂^o) mod p
+Open: reveal (w, o), verify pair
+```
+
+---
+
+## Schnorr Protocol
+→ Full notes: [[Day 7 - Sigma Protocols]]
+
+**Public:** `h = g^w mod p`.  **Private:** `w`.
+
+```
+Prover: r ∈_R Zq \ {0};  c = g^r mod p   →  send c
+Verifier: send e ∈_R Zq \ {0}
+Prover: z = (ew + r) mod q              →  send z
+Verifier: check  g^z ≡ h^e · c  mod p
+```
+
+> z is computed mod q (subgroup order), NOT mod p
+
+---
+
+## Schnorr AND-Protocol
+→ Full notes: [[Day 7 - Sigma Protocols]]
+
+Proves knowledge of both `w₁` and `w₂` (where `h₁=g₁^w₁`, `h₂=g₂^w₂`).
+
+```
+Prover sends: c₁=g₁^r₁, c₂=g₂^r₂
+Shared challenge: e
+Responses: z₁=(ew₁+r₁) mod q,  z₂=(ew₂+r₂) mod q
+Verify: g₁^z₁ ≡ h₁^e·c₁  AND  g₂^z₂ ≡ h₂^e·c₂  mod p
+Combined: g₁^z₁ · g₂^z₂ ≡ h^e · c  mod p
+```
+
+---
+
+## Schnorr OR-Protocol
+→ Full notes: [[Day 7 - Sigma Protocols]]
+
+Proves knowledge of one of `w₁`, `w₂` without revealing which.
+
+```
+Prover picks z₂,e₂,r₁; computes c₁=g^r₁, c₂=g^z₂·h₂^(-e₂)
+Challenge e split: e₁ = e - e₂ mod q
+Response: z₁ = (e₁·w₁ + r₁) mod q
+Verifier checks: e₁+e₂ ≡ e;  g^z₁≡h₁^e₁·c₁;  g^z₂≡h₂^e₂·c₂
+```
+
+---
+
+## CL Signature (IDEMIX)
+→ Full notes: [[Day 8 - Signatures]]
+
+**Setup:** `n=pq`, random `A,B,C ∈ Z*_n`
+
+```
+Sign:       find v s.t.  vᵉ ≡ Aᵐ·Bˢ·C  mod n    → σ=(v,e,s)
+Verify:     vᵉ ≡ Aᵐ·Bˢ·C  mod n
+Randomize:  v'=v·Bʳ mod n;  s'=s+e·r mod φ(n)  → σ'=(v',e,s')
+Verify σ':  v'ᵉ ≡ Aᵐ·Bˢ'·C  mod n
+```
+
+> s' uses φ(n) not n
+
+---
+
+## Blind RSA Signature
+→ Full notes: [[Day 8 - Signatures]]
+
+**Setup:** RSA `(n, pk, sk)`.
+
+```
+Blind:    m' = m · r^pk  mod n      (user, r random)
+Sign:     s' = m'^sk     mod n      (signer)
+Unblind:  s  = s' · r⁻¹ mod n      (user)
+Verify:   m  ≡ s^pk      mod n
+```
+
+---
+
+## Algebraic MAC
+→ Full notes: [[Day 9 - Algebraic MAC]]
+
+**Setup:** EC group `G`, generator `g` of order `q`, `sk=(x₀,x₁,…,xₖ)`
+
+```
+α = x₀ + Σ mᵢxᵢ  mod q
+σ = α⁻¹ · g                        (EC scalar multiplication)
+
+Randomize: h = r·g,  σ̂ = r·σ
+Verify:    α · σ̂  =  h              (EC scalar multiplication)
+```
+
+> All operations are EC scalar multiplication — not modular exponentiation

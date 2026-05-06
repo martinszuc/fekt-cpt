@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, asymmetric, algorithms]
+tags: [cryptography, cpt, concept, day2]
 aliases: [RSA]
 related: "[[Euler's Totient Function (Phi)]], [[Greatest Common Divisor (GCD)]]"
 ---

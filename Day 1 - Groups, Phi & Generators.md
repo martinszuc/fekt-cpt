@@ -1,5 +1,5 @@
 ---
-tags: [moc, day1]
+tags: [cryptography, cpt, moc, day1]
 aliases: [day1, day1_groups_phi_generators]
 ---
 

@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, asymmetric, signatures]
+tags: [cryptography, cpt, concept, day2]
 aliases: [DSA]
 related: "[[Generators in Cryptography]], [[RSA Algorithm]]"
 ---

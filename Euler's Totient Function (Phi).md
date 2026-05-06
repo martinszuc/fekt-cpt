@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, math, primes]
+tags: [cryptography, cpt, concept, day1]
 aliases: [Totient Function, Phi, Euler's Totient]
 related: "[[RSA Algorithm]], [[Greatest Common Divisor (GCD)]]"
 ---

@@ -1,5 +1,5 @@
 ---
-tags: [cryptography, asymmetric, advanced]
+tags: [cryptography, cpt, concept, day3]
 aliases: [ECC, Elliptic Curves]
 related: "[[Group Theory Fundamentals]], [[Digital Signature Algorithm (DSA)]]"
 ---

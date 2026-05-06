@@ -19,7 +19,7 @@ related: "[[Day 8 - Signatures]], [[Elliptic Curve Cryptography (ECC)]], [[Equat
 
 - Elliptic curve group $G = E(\mathbb{F}_p)$ of order $n$, with $q \mid n$
 - Generator $g \in G$ of order $q$
-- Secret key: $sk = (x_0, x_1, \ldots, x_k) \in_R \mathbb{Z}_q^*$
+- Secret key: $sk = (x_0, x_1, \ldots, x_k) \in_R \mathbb{Z}_q$
 - Messages: $(m_1, \ldots, m_k)$
 
 > [!warning] EC notation — scalar multiplication, not exponentiation

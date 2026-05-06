@@ -14,6 +14,10 @@ Personal Obsidian knowledge base for my cryptography studies (FEKT?).
 - Templater
 
 ## Structure
-- `Home.md` → main index
-- `Days/` → daily lessons
-- `Equations.md` → cheat sheet
+- `Home.md` → main index / map of content
+- `Day 1 - Groups, Phi & Generators.md` → Day 1 MOC
+- `Day 2 - DH, ElGamal, RSA & DSA.md` → Day 2 MOC
+- `Day 3 - Elliptic Curves.md` → Day 3 MOC
+- Atomic topic notes (one concept per file) — GCD, Group Theory, Euler's Totient, Generators, DH, ElGamal, RSA, DSA, ECC
+- `Equations and Proofs.md` → formula cheat sheet with links to atomic notes
+- `00_Cryptography_Study_Plan.md` → study roadmap

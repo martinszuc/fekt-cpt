@@ -19,15 +19,15 @@ aliases:
 
 | Note | Topics | Status |
 |---|---|---|
-| [[day1_groups_phi_generators]] | ϕ(n), Z\*_n, Orders, Generators, Fast Exponentiation | ✅ |
-| [[day2_DH_ElGamal_RSA_DSA]] | Diffie-Hellman, ElGamal, RSA, DSA | ✅ |
-| [[day3_elliptic_curves]] | EC arithmetic, Point Addition, Orders | ✅ |
+| [[Day 1 - Groups, Phi & Generators]] | ϕ(n), Z\*_n, Orders, Generators, Fast Exponentiation | ✅ |
+| [[Day 2 - DH, ElGamal, RSA & DSA]] | Diffie-Hellman, ElGamal, RSA, DSA | ✅ |
+| [[Day 3 - Elliptic Curves]] | EC arithmetic, Point Addition, Orders | ✅ |
 
 ---
 
 ## 🧰 Reference Notes
 
-- [[gcd]] — Euclidean Algorithm, coprimality, Z\*_n membership
+- [[Greatest Common Divisor (GCD)]] — Euclidean Algorithm, coprimality, Z\*_n membership
 
 ---
 

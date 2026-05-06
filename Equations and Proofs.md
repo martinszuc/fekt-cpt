@@ -18,7 +18,7 @@ aliases:
 ---
 
 ## ϕ(n) — Euler's Totient Function
-→ Full notes: [[day1_groups_phi_generators#1. Euler Function ϕ(n)]]
+→ Full notes: [[Euler's Totient Function (Phi)]]
 
 | Case | Formula | When to use |
 |---|---|---|
@@ -30,7 +30,7 @@ aliases:
 ---
 
 ## GCD — Greatest Common Divisor
-→ Full notes: [[gcd]]
+→ Full notes: [[Greatest Common Divisor (GCD)]]
 
 ```
 Euclidean algorithm:
@@ -60,7 +60,7 @@ Euclidean algorithm:
 ---
 
 ## Orders
-→ Full notes: [[day1_groups_phi_generators#4. Order of an Element]]
+→ Full notes: [[Group Theory Fundamentals]]
 
 ```
 Order of element a = smallest k s.t.  a^k ≡ 1 mod n
@@ -76,7 +76,7 @@ Order of element a = smallest k s.t.  a^k ≡ 1 mod n
 ---
 
 ## Generator Test
-→ Full notes: [[day1_groups_phi_generators#6. Generator-Finding Algorithm (from the teacher)]]
+→ Full notes: [[Generators in Cryptography]]
 
 ```
 g is a generator of Z*_n  ⟺
@@ -91,7 +91,7 @@ g is a generator of Z*_n  ⟺
 ---
 
 ## Fast Exponentiation (Square-and-Multiply)
-→ Full notes: [[day1_groups_phi_generators#7. Fast Exponentiation (Square-and-Multiply)]]
+→ Full notes: [[Group Theory Fundamentals]]
 
 ```
 To compute a^k mod n:
@@ -108,7 +108,7 @@ a^(p-1) ≡ 1 mod p   →   reduce exponent mod (p-1) first
 ---
 
 ## Diffie-Hellman
-→ Full notes: [[day2_DH_ElGamal_RSA_DSA#1. Diffie-Hellman Protocol]]
+→ Full notes: [[Diffie-Hellman Key Exchange]]
 
 **Public parameters:** prime p, element g of order q in Z\*_p
 
@@ -120,7 +120,7 @@ Shared key: K = B^a mod p  =  A^b mod p  =  g^(ab) mod p
 ---
 
 ## ElGamal Encryption
-→ Full notes: [[day2_DH_ElGamal_RSA_DSA#2. ElGamal Encryption]]
+→ Full notes: [[ElGamal Encryption]]
 
 **Setup:** p prime, g generator, private x, public h = g^x mod p
 
@@ -136,7 +136,7 @@ Decrypt:
 ---
 
 ## RSA
-→ Full notes: [[day2_DH_ElGamal_RSA_DSA#3. RSA Algorithm]]
+→ Full notes: [[RSA Algorithm]]
 
 **Setup:** n = p·q, ϕ(n) = (p-1)(q-1)
 
@@ -154,7 +154,7 @@ Decrypt:  m = c^d mod n
 ---
 
 ## DSA — Digital Signature Algorithm
-→ Full notes: [[day2_DH_ElGamal_RSA_DSA#4. DSA (Digital Signature Algorithm)]]
+→ Full notes: [[Digital Signature Algorithm (DSA)]]
 
 **Setup:** q prime, p = q·z+1 prime, g of order q, private x, public y = g^x mod p
 
@@ -174,7 +174,7 @@ Verify:
 ---
 
 ## Elliptic Curves — Basics
-→ Full notes: [[day3_elliptic_curves]]
+→ Full notes: [[Elliptic Curve Cryptography (ECC)]]
 
 **Curve form:** `E(Fp): y² = x³ + a·x + b  (mod p)`
 
@@ -185,7 +185,7 @@ Verify:
 ---
 
 ## EC Point Addition: R = P + Q
-→ Full notes: [[day3_elliptic_curves#4. Point Addition R = P +_E Q]]
+→ Full notes: [[Elliptic Curve Cryptography (ECC)#Group Operations on the Curve]]
 
 **Pick your case first:**
 

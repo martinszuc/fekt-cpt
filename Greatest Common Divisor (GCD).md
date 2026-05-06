@@ -9,8 +9,9 @@ aliases:
   - Greatest Common Divisor
   - Euclidean Algorithm
 related:
-  - "[[day1_groups_phi_generators]]"
-  - "[[day2_DH_ElGamal_RSA_DSA]]"
+  - "[[Euler's Totient Function (Phi)]]"
+  - "[[RSA Algorithm]]"
+  - "[[Group Theory Fundamentals]]"
 ---
 
 # GCD — How to Compute It
@@ -170,4 +171,4 @@ No Euclidean algorithm needed at all.
 
 ---
 
-**Used in:** [[day1_groups_phi_generators]] · [[day2_DH_ElGamal_RSA_DSA]]
+**Used in:** [[Euler's Totient Function (Phi)]] · [[RSA Algorithm]] · [[Diffie-Hellman Key Exchange]]

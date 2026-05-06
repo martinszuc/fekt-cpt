@@ -240,6 +240,9 @@ Order of P = smallest k s.t.  k·P = ∞
 | 3 | Scalar | `e(aP, Q) = e(P, Q)ᵃ = e(P, aQ)` |
 | 4 | Bilinear | `e(aP, bQ) = e(P, Q)^(ab)` |
 | 5 | Additive | `e(P₁+P₂, Q) = e(P₁,Q)·e(P₂,Q)` |
+| 6 | Non-degeneracy | `e(P, Q) ≠ 1` for some P, Q — usually `e(g₁, g₂) ≠ 1` |
+
+> [!tip] Most important for exams: Bilinearity (property 4)
 
 ---
 
@@ -382,3 +385,96 @@ Verify:    α · σ̂  =  h              (EC scalar multiplication)
 ```
 
 > All operations are EC scalar multiplication — not modular exponentiation
+
+---
+
+## ECDH — Elliptic Curve Diffie-Hellman
+→ Full notes: [[Elliptic Curve Cryptography (ECC)]]
+
+**Public parameters:** curve $E$, base point $G$ of order $q$
+
+```
+Alice: A = a·G          Bob: B = b·G
+Shared key: K = a·B = b·A = (ab)·G
+```
+
+---
+
+## ECDSA — Elliptic Curve Digital Signature Algorithm
+→ Full notes: [[Elliptic Curve Cryptography (ECC)]]
+
+**Setup:** curve $E$, base point $G$ of order $q$, private key $d$, public key $Q = d \cdot G$
+
+```
+Sign (message m, random k ∈ Zq \ {0}):
+  R = k·G = (x_R, y_R)
+  r = x_R mod q
+  s = k⁻¹ · (H(m) + d·r) mod q
+  → Signature: (r, s)
+
+Verify:
+  w  = s⁻¹ mod q
+  u₁ = H(m)·w mod q
+  u₂ = r·w mod q
+  X  = u₁·G + u₂·Q
+  → Check: x_X mod q == r
+```
+
+---
+
+## Euler's Theorem (general)
+
+```
+If gcd(a, n) = 1, then  a^ϕ(n) ≡ 1 mod n
+```
+
+Special case (Fermat's Little Theorem, p prime): `a^(p-1) ≡ 1 mod p`
+
+**Use:** reduce large exponents — replace `a^k` with `a^(k mod ϕ(n)) mod n`
+
+---
+
+## Extended Euclidean Algorithm — Modular Inverse
+
+```
+Finds x, y such that:  ax + ny = gcd(a, n)
+
+If gcd(a, n) = 1  →  x ≡ a⁻¹ mod n
+```
+
+**Quick check:** the inverse of $a$ mod $n$ exists **iff** $\gcd(a, n) = 1$.
+
+---
+
+## Chinese Remainder Theorem (CRT)
+
+If $n = p \cdot q$ with $p, q$ distinct primes and
+
+```
+x ≡ a  mod p
+x ≡ b  mod q
+```
+
+then there is a **unique** solution $x \bmod n$.
+
+**RSA use:** compute $m = c^d \bmod n$ faster by working mod $p$ and mod $q$ separately, then combining with CRT.
+
+---
+
+## EC Curve — Non-Singularity Condition
+
+```
+Δ = -16(4a³ + 27b²) ≢ 0  mod p
+```
+
+If $\Delta = 0$, the curve has a singular point (cusp or self-intersection) and is **not** an elliptic curve.
+
+---
+
+## EC — Hasse Bound (Group Order Estimate)
+
+```
+| #E(Fp) - (p + 1) | ≤ 2√p
+```
+
+The number of points on $E(\mathbb{F}_p)$ is always close to $p + 1$. Useful for sanity-checking a computed group order.

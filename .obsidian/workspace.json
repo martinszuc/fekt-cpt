@@ -11,14 +11,10 @@
             "id": "c0ff1688dd1d5d35",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "gcd.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "gcd"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "gcd.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for gcd"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "gcd.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from gcd"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "gcd.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of gcd"
+              "title": "Outline"
             }
           }
         ]
@@ -185,12 +178,23 @@
   },
   "active": "c0ff1688dd1d5d35",
   "lastOpenFiles": [
+    "gcd.md",
+    "Elliptic Curve Cryptography (ECC).md",
+    "Digital Signature Algorithm (DSA).md",
+    "ElGamal Encryption.md",
+    "Diffie-Hellman Key Exchange.md",
+    "Generators in Cryptography.md",
+    "Euler's Totient Function (Phi).md",
+    "Group Theory Fundamentals.md",
+    "Equations and Proofs.md",
+    "Greatest Common Divisor (GCD).md",
+    "RSA Algorithm.md",
+    "00_Cryptography_Study_Plan.md",
     "day1_groups_phi_generators.md",
     "Equations.md",
     "Home.md",
     "day3_elliptic_curves.md",
     "day2_DH_ElGamal_RSA_DSA.md",
-    "gcd.md",
     "README.md"
   ]
 }

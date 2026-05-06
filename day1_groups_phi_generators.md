@@ -1,6 +1,21 @@
+---
+tags:
+  - cryptography
+  - group-theory
+  - exam-prep
+  - day1
+aliases:
+  - Day 1
+  - Groups and Generators
+related:
+  - "[[day2_DH_ElGamal_RSA_DSA]]"
+  - "[[gcd]]"
+---
+
 # Day 1 — Groups, ϕ(n), Orders, Generators
 
-> **How to use this doc:** Read a section, look at the worked example, then try the exercise yourself before checking the answer.
+> [!tip] How to use this note
+> Read a section, look at the worked example, then try the exercise yourself before checking the answer. Prerequisites: none — this is the foundation for [[day2_DH_ElGamal_RSA_DSA]] and [[day3_elliptic_curves]].
 
 ---
 
@@ -37,6 +52,7 @@ Step 2 — Apply formula:
        = 24
 ```
 
+> [!example] Teacher's example
 > This matches the teacher's example exactly.
 
 ---
@@ -81,6 +97,9 @@ Compute:
 Z*_n contains all elements `a ∈ Zₙ` such that `gcd(a, n) = 1`.
 
 The **order of Z*_n** (= number of elements) is `ϕ(n)`.
+
+> [!note] How to compute GCD fast
+> See [[gcd]] for the full Euclidean algorithm. For n = p·q, just remove multiples of p and q — no computation needed.
 
 ---
 
@@ -136,7 +155,8 @@ The inverse of `a` in Z*_n is the element `b` such that:
 a · b ≡ 1 mod n
 ```
 
-**It exists only if gcd(a, n) = 1.**
+> [!important] Key condition
+> The inverse **exists only if gcd(a, n) = 1**. If gcd > 1, there is no inverse — this is why the group is called Z***_n**.
 
 ### How to find it (trial method for small numbers)
 
@@ -191,12 +211,11 @@ The **order of element a ∈ Z*_n** is the smallest positive integer `k` such th
 a^k ≡ 1 mod n
 ```
 
-### Key rule (from the teacher):
+> [!important] Key rule (from the teacher)
 > **The order of an element always divides the order of the group.**
-
-So for Z*_n with order ϕ(n), the only possible element orders are the **divisors of ϕ(n)**.
-
-This saves a lot of work — you only need to test divisors!
+> 
+> So for Z*_n with order ϕ(n), the only possible element orders are the **divisors of ϕ(n)**.
+> This saves a lot of work — you only need to test divisors!
 
 ---
 
@@ -220,7 +239,8 @@ Step 3 — Test each (smallest first), stop when you get 1:
 
 **Order of 4 is 6.**
 
-> Tip for computing: 4^3 = 64 = 4·13 + 12 ≡ 12 mod 13. Then 4^6 = (4^3)^2 = 12^2 = 144 = 11·13 + 1 ≡ 1 mod 13. ✓
+> [!tip] Computation shortcut
+> 4^3 = 64 = 4·13 + 12 ≡ 12 mod 13. Then 4^6 = (4^3)^2 = 12^2 = 144 = 11·13 + 1 ≡ 1 mod 13. ✓
 
 ---
 
@@ -266,9 +286,10 @@ Hint: ϕ(14) = 6. Divisors of 6 = {1, 2, 3, 6}.
 
 ### Definition (from the teacher)
 
+> [!note] Generator definition
 > A **generator of a group G** is an element of **maximum order** in G.
-
-For Z*_n, a generator g has order ϕ(n).
+> 
+> For Z*_n, a generator g has order ϕ(n).
 
 **Number of generators of Z*_q (q prime):**
 ```
@@ -406,7 +427,7 @@ For computing `a^k mod n` with large k, repeated squaring is your friend.
 | `ϕ(p) = p - 1` | Euler function for prime |
 | `ϕ(pq) = (p-1)(q-1)` | Euler function for two primes |
 | `ϕ(p^a) = (p-1)·p^(a-1)` | Euler function for prime power |
-| Elements of Z*_n | all a with gcd(a,n) = 1 |
+| Elements of Z*_n | all a with gcd(a,n) = 1 → see [[gcd]] |
 | Order of Z*_n | ϕ(n) |
 | Order of element a | smallest k s.t. a^k ≡ 1 mod n |
 | Order of element divides | order of the group |
@@ -423,7 +444,12 @@ If p is prime and gcd(a, p) = 1:
 a^(p-1) ≡ 1 mod p
 ```
 
-This means you can reduce exponents mod (p-1) when working mod p.
+> [!tip] Exam shortcut
+> This lets you reduce exponents mod (p-1) when working mod p.
+> 
+> **Example:** Compute 3^100 mod 7.
+> ϕ(7) = 6 → 100 mod 6 = 4 → 3^100 ≡ 3^4 = 81 ≡ **4 mod 7**.
 
-**Example:** Compute 3^100 mod 7.
-ϕ(7) = 6 → 100 mod 6 = 4 → 3^100 ≡ 3^4 = 81 ≡ 81-11·7 = 81-77 = **4 mod 7**.
+---
+
+**Next:** [[day2_DH_ElGamal_RSA_DSA]] — Diffie-Hellman, ElGamal, RSA, DSA

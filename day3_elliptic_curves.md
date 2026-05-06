@@ -1,6 +1,22 @@
+---
+tags:
+  - cryptography
+  - elliptic-curves
+  - exam-prep
+  - day3
+aliases:
+  - Day 3
+  - Elliptic Curves
+  - EC
+related:
+  - "[[day1_groups_phi_generators]]"
+  - "[[day2_DH_ElGamal_RSA_DSA]]"
+---
+
 # Day 3 — Elliptic Curves
 
-> **Prerequisite:** You need modular inverse from Day 1. Division in EC arithmetic is always modular inverse!
+> [!warning] Prerequisite
+> You need modular inverse from [[day1_groups_phi_generators]]. Division in EC arithmetic is **always** modular inverse — there is no actual division.
 
 ---
 
@@ -16,7 +32,9 @@ where `a, b ∈ Fp` and all arithmetic is done **mod p**.
 
 **The set E(Fp)** = all points (x, y) satisfying the equation + the special point **∞ (point at infinity)**.
 
-∞ is the **identity element** (like 0 in addition): `P + ∞ = P` for any point P.
+> [!important] The point at infinity ∞
+> ∞ is the **identity element** (like 0 in addition): `P + ∞ = P` for any point P.
+> When you compute k·P and get ∞, you've found the order of P.
 
 ---
 
@@ -50,11 +68,12 @@ Right side: `3³ + 2·3 + 1 = 27 + 6 + 1 = 34 ≡ 34 - 6·5 = 4 mod 5`
 
 Left side: `1² = 1`
 
-Right side: `3³ + 2·3 + 1 = 34 ≡ 34 - 3·11 = 34-33 = 1 mod 11`
+Right side: `3³ + 2·3 + 1 = 34 ≡ 34 - 3·11 = 1 mod 11`
 
 `1 ≡ 1 mod 11` ✓ → **T = (3, 1) IS on E(F₁₁)**
 
-> ⚠ The field matters! Same point, different answer for different p.
+> [!warning] The field matters!
+> Same point, different answer for different p. Always check which field you're working in.
 
 ---
 
@@ -72,7 +91,7 @@ Check whether these points are on the curve:
 
 **A = (3, 3):**
 Left: 3² = 9 ≡ 2 mod 7
-Right: 3³ + 2·3 + 1 = 27+6+1 = 34 ≡ 34-4·7 = 6 mod 7
+Right: 3³ + 2·3 + 1 = 27+6+1 = 34 ≡ 6 mod 7
 2 ≢ 6 → **A is NOT on E(F₇)**
 
 **B = (0, 1):**
@@ -98,13 +117,15 @@ For P = (xp, yp):
 -P = (xp, -yp mod p)
 ```
 
-**Example:** If P = (2, 3) on E(F₇), then -P = (2, -3 mod 7) = (2, 4).
+> [!tip] Example
+> If P = (2, 3) on E(F₇), then -P = (2, -3 mod 7) = (2, 4).
+> Remember: -3 mod 7 = **4** (add p until positive), not -3.
 
 ---
 
 ## 4. Point Addition: R = P +_E Q
 
-This is the core skill. There are **4 cases**.
+This is the core skill. There are **4 cases** — identify the right one before computing.
 
 ---
 
@@ -148,7 +169,14 @@ P +_E P = ∞
 P +_E Q = ∞
 ```
 
-> This happens when Q = -P (they are inverses of each other).
+> [!note]
+> This happens when Q = -P. They are inverses of each other — their sum is the identity.
+
+> [!important] yr formula is the same for Cases 1 and 2
+> ```
+> yr = λ·(xp - xr) - yp  mod p
+> ```
+> Only λ differs between them.
 
 ---
 
@@ -156,20 +184,18 @@ P +_E Q = ∞
 
 **E(F₅): y² = x³ + x + 1, P = (0, 1), Q = (2, 1). Compute R = P + Q.**
 
-xp = 0, yp = 1, xq = 2, yq = 1. Since xp ≠ xq → Case 1.
+xp = 0, yp = 1, xq = 2, yq = 1. Since xp ≠ xq → **Case 1**.
 
 ```
 λ = (yq - yp) / (xq - xp) mod 5
   = (1 - 1) / (2 - 0) mod 5
-  = 0 / 2 mod 5
-  = 0 · 2⁻¹ mod 5
-  = 0     (anything times 0 is 0)
+  = 0 / 2 = 0
 
-xr = λ² - xp - xq = 0 - 0 - 2 = -2 ≡ 3 mod 5
-yr = λ·(xp - xr) - yp = 0·(0 - 3) - 1 = -1 ≡ 4 mod 5
+xr = 0 - 0 - 2 = -2 ≡ 3 mod 5
+yr = 0·(0 - 3) - 1 = -1 ≡ 4 mod 5
 ```
 
-**R = (3, 4)** ✓ (matches the teacher's example)
+**R = (3, 4)** ✓
 
 ---
 
@@ -177,31 +203,24 @@ yr = λ·(xp - xr) - yp = 0·(0 - 3) - 1 = -1 ≡ 4 mod 5
 
 **E(F₇): y² = x³ + 2x + 1, P = (1, 2), Q = (0, 1). Compute R = P + Q.**
 
-xp = 1, yp = 2, xq = 0, yq = 1. Since xp ≠ xq → Case 1.
+xp = 1, yp = 2, xq = 0, yq = 1. Since xp ≠ xq → **Case 1**.
 
 ```
-λ = (yq - yp) / (xq - xp) mod 7
-  = (1 - 2) / (0 - 1) mod 7
-  = (-1) / (-1) mod 7
-  = (-1) · (-1)⁻¹ mod 7
+λ = (1 - 2) / (0 - 1) mod 7 = (-1) / (-1) mod 7 = 6 / 6 mod 7
 ```
 
-First, -1 mod 7 = 6.
-
-So: `λ = 6 / 6 mod 7 = 6 · 6⁻¹ mod 7`
-
-Find 6⁻¹ mod 7: try 6·k ≡ 1 mod 7 → 6·6 = 36 ≡ 1 mod 7 ✓ → **6⁻¹ = 6**
+Find 6⁻¹ mod 7: 6·6 = 36 ≡ 1 mod 7 ✓ → **6⁻¹ = 6**
 
 ```
 λ = 6 · 6 = 36 ≡ 1 mod 7
 
-xr = λ² - xp - xq = 1 - 1 - 0 = 0 mod 7
-yr = λ·(xp - xr) - yp = 1·(1 - 0) - 2 = 1 - 2 = -1 ≡ 6 mod 7
+xr = 1 - 1 - 0 = 0 mod 7
+yr = 1·(1 - 0) - 2 = -1 ≡ 6 mod 7
 ```
 
 **R = (0, 6)**
 
-Verify R is on E(F₇): 6² = 36 ≡ 1 mod 7. 0³+0+1 = 1 mod 7. ✓
+Verify: 6² = 36 ≡ 1 mod 7. 0³+0+1 = 1 mod 7. ✓
 
 ---
 
@@ -209,12 +228,10 @@ Verify R is on E(F₇): 6² = 36 ≡ 1 mod 7. 0³+0+1 = 1 mod 7. ✓
 
 **E(F₅): y² = x³ + x + 1, P = (0, 1). Compute 2P.**
 
-P = Q = (0, 1), yp = 1 ≠ 0 → Case 2 (a = 1 from y² = x³ + **1**·x + 1).
+P = Q = (0, 1), yp = 1 ≠ 0 → **Case 2** (a = 1).
 
 ```
-λ = (3·xp² + a) / (2·yp) mod 5
-  = (3·0² + 1) / (2·1) mod 5
-  = 1 / 2 mod 5
+λ = (3·0² + 1) / (2·1) mod 5 = 1 / 2 mod 5
 ```
 
 Find 2⁻¹ mod 5: 2·3 = 6 ≡ 1 mod 5 → **2⁻¹ = 3**
@@ -222,8 +239,8 @@ Find 2⁻¹ mod 5: 2·3 = 6 ≡ 1 mod 5 → **2⁻¹ = 3**
 ```
 λ = 1 · 3 = 3 mod 5
 
-xr = λ² - 2·xp = 9 - 0 = 9 ≡ 4 mod 5
-yr = λ·(xp - xr) - yp = 3·(0 - 4) - 1 = 3·(-4) - 1 = -12 - 1 = -13 ≡ 2 mod 5
+xr = 9 - 0 = 9 ≡ 4 mod 5
+yr = 3·(0 - 4) - 1 = -13 ≡ 2 mod 5
 ```
 
 **2P = (4, 2)**
@@ -234,33 +251,28 @@ yr = λ·(xp - xr) - yp = 3·(0 - 4) - 1 = 3·(-4) - 1 = -12 - 1 = -13 ≡ 2 mod
 
 **E(F₇): y² = x³ + 2x + 1, P = (1, 2), Q = (0, 1).**
 
-You already computed P + Q above. Now compute:
+Compute:
 - **2P** (point doubling)
 - **-R** where R = (0, 6) from above
 
 <details>
 <summary>Show answer</summary>
 
-**2P = P + P**, P = (1, 2), a = 2, p = 7. → Case 2.
+**2P**, P = (1, 2), a = 2, p = 7 → Case 2:
 
 ```
-λ = (3·1² + 2) / (2·2) mod 7
-  = 5 / 4 mod 7
+λ = (3·1 + 2) / (2·2) mod 7 = 5 / 4 mod 7
+4⁻¹ mod 7: 4·2=8≡1 → 4⁻¹ = 2
+λ = 5·2 = 10 ≡ 3 mod 7
 
-4⁻¹ mod 7: 4·2=8≡1 mod 7 → 4⁻¹ = 2
-
-λ = 5 · 2 = 10 ≡ 3 mod 7
-
-xr = 3² - 2·1 = 9 - 2 = 7 ≡ 0 mod 7
-yr = 3·(1 - 0) - 2 = 3 - 2 = 1 mod 7
+xr = 9 - 2 = 7 ≡ 0 mod 7
+yr = 3·(1 - 0) - 2 = 1 mod 7
 ```
 
 **2P = (0, 1)**
 
-Interesting! (0, 1) is exactly Q. So 2P = Q on this curve.
-
 **-R where R = (0, 6):**
--R = (0, -6 mod 7) = (0, 1)
+-R = (0, -6 mod 7) = **(0, 1)**
 
 </details>
 
@@ -283,6 +295,9 @@ This is used to find the **order of E(Fp)** (= total number of points including 
 
 **Step 4.** Add 1 for the point ∞.
 
+> [!tip] Squares shortcut
+> You only need y from 0 to (p-1)/2. Since (-y)² = y², values repeat. E.g. for p=7: only check y = 0,1,2,3.
+
 ---
 
 ### Worked Example (from the teacher)
@@ -297,21 +312,19 @@ This is used to find the **order of E(Fp)** (= total number of points including 
 | ±1 | 1 |
 | ±2 | 4 |
 
-(Note: 3² = 9 ≡ 4, 4² = 16 ≡ 1, so we only need y = 0,1,2)
-
 **Check each x:**
 
 | x | x³+x+1 mod 5 | In squares? | Points |
 |---|---|---|---|
-| 0 | 0+0+1 = 1 | Yes (y=±1) | (0,1), (0,4) |
-| 1 | 1+1+1 = 3 | No | — |
-| 2 | 8+2+1 = 11 ≡ 1 | Yes (y=±1) | (2,1), (2,4) |
-| 3 | 27+3+1 = 31 ≡ 1 | Yes (y=±1) | (3,1), (3,4) |
-| 4 | 64+4+1 = 69 ≡ 4 | Yes (y=±2) | (4,2), (4,3) |
+| 0 | 1 | Yes (y=±1) | (0,1), (0,4) |
+| 1 | 3 | No | — |
+| 2 | 11 ≡ 1 | Yes (y=±1) | (2,1), (2,4) |
+| 3 | 31 ≡ 1 | Yes (y=±1) | (3,1), (3,4) |
+| 4 | 69 ≡ 4 | Yes (y=±2) | (4,2), (4,3) |
 
 **Points:** (0,1), (0,4), (2,1), (2,4), (3,1), (3,4), (4,2), (4,3), ∞
 
-**Order of E(F₅) = 9** (teacher confirms this)
+**Order of E(F₅) = 9** ✓
 
 ---
 
@@ -319,26 +332,22 @@ This is used to find the **order of E(Fp)** (= total number of points including 
 
 **Find all points of E(F₇): y² = x³ - x - 1**
 
-(From Lab 2 homework)
-
 <details>
 <summary>Show answer</summary>
 
-**Squares mod 7:**
-0²=0, 1²=1, 2²=4, 3²=2, 4²=2, 5²=4, 6²=1
-Distinct square values: {0, 1, 2, 4}
+**Squares mod 7:** {0→0, 1→1, 2→4, 3→2, 4→2, 5→4, 6→1} → distinct values: {0, 1, 2, 4}
 
 **RHS = x³ - x - 1 mod 7:**
 
-| x | x³-x-1 mod 7 | Square? | Points |
+| x | RHS | Square? | Points |
 |---|---|---|---|
 | 0 | -1 ≡ 6 | No | — |
-| 1 | 1-1-1 = -1 ≡ 6 | No | — |
-| 2 | 8-2-1 = 5 | No | — |
-| 3 | 27-3-1 = 23 ≡ 2 | Yes (y=3,4) | (3,3),(3,4) |
-| 4 | 64-4-1 = 59 ≡ 3 | No | — |
-| 5 | 125-5-1 = 119 ≡ 0 | Yes (y=0) | (5,0) |
-| 6 | 216-6-1 = 209 ≡ 6 | No | — |
+| 1 | -1 ≡ 6 | No | — |
+| 2 | 5 | No | — |
+| 3 | 23 ≡ 2 | Yes (y=3,4) | (3,3),(3,4) |
+| 4 | 59 ≡ 3 | No | — |
+| 5 | 119 ≡ 0 | Yes (y=0) | (5,0) |
+| 6 | 209 ≡ 6 | No | — |
 
 **Points:** (3,3), (3,4), (5,0), ∞ → **Order = 4**
 
@@ -350,27 +359,22 @@ Distinct square values: {0, 1, 2, 4}
 
 The **order of a point P** = smallest positive integer k such that `k·P = ∞`.
 
-**Key rule:** order of P divides order of E(Fp). Only test divisors.
+> [!important] Key rule
+> Order of P **divides** order of E(Fp). Only test divisors — same logic as [[day1_groups_phi_generators#4. Order of an Element|element orders in Z\*_n]].
 
 ### Worked Example (from the teacher)
 
 **E(F₅): y² = x³ - x + 1, P = (4, 1). Order of E(F₅) = 8.**
 
-Divisors of 8: **1, 2, 4, 8**. Since P ≠ ∞, order > 1. Test 2P, 4P, 8P:
+Divisors of 8: **1, 2, 4, 8**. Since P ≠ ∞, order > 1. Test 2P:
 
 **Compute 2P** (a = -1, p = 5):
 ```
-λ = (3·4² + (-1)) / (2·1) mod 5
-  = (48 - 1) / 2 mod 5
-  = 47 / 2 mod 5
-  = 2 / 2 mod 5     (47 ≡ 2 mod 5)
-  = 2 · 2⁻¹ mod 5
-  = 2 · 3 = 6 ≡ 1 mod 5     (2⁻¹ = 3 since 2·3=6≡1)
+λ = (3·16 - 1) / (2·1) mod 5 = 47/2 mod 5 = 2·3 = 6 ≡ 1 mod 5
+  (47 ≡ 2 mod 5, 2⁻¹ = 3)
 
-λ = 1
-
-xr = 1 - 2·4 = 1-8 = -7 ≡ 3 mod 5
-yr = 1·(4 - 3) - 1 = 1 - 1 = 0 mod 5
+xr = 1 - 8 = -7 ≡ 3 mod 5
+yr = 1·(4-3) - 1 = 0 mod 5
 ```
 
 **2P = (3, 0)**
@@ -378,7 +382,7 @@ yr = 1·(4 - 3) - 1 = 1 - 1 = 0 mod 5
 **Compute 4P = 2·(2P) = 2·(3, 0):**
 yp = 0 → **Case 3** → `4P = ∞`
 
-So the order of P divides 4. It's not 1 or 2 (we just showed 2P ≠ ∞). → **Order of P = 4** ✓
+So order divides 4, and 2P ≠ ∞ → **Order of P = 4** ✓
 
 ---
 
@@ -391,30 +395,23 @@ Find the order of P. (Hint: divisors of 9 are 1, 3, 9)
 <details>
 <summary>Show answer</summary>
 
-P = (0,1), a=1, p=5. Test 3P first.
-
-**2P** (doubling):
+**2P** (doubling, a=1, p=5):
 ```
-λ = (3·0 + 1)/(2·1) mod 5 = 1/2 mod 5 = 1·3 = 3   (2⁻¹=3)
-xr = 9 - 0 = 4 mod 5
-yr = 3·(0-4) - 1 = -12-1 = -13 ≡ 2 mod 5
+λ = (0 + 1)/2 mod 5 = 1·3 = 3   (2⁻¹=3)
+xr = 9 ≡ 4, yr = 3·(0-4)-1 = -13 ≡ 2
 2P = (4, 2)
 ```
 
-**3P = 2P + P = (4,2) + (0,1):**
+**3P = 2P + P = (4,2) + (0,1)**:
 ```
-λ = (1-2)/(0-4) = (-1)/(-4) = 1/4 mod 5
-4⁻¹ mod 5: 4·4=16≡1 mod 5 → 4⁻¹=4
-λ = 1·4 = 4
-
-xr = 16 - 4 - 0 = 12 ≡ 2 mod 5
-yr = 4·(4-2) - 2 = 8-2 = 6 ≡ 1 mod 5
+λ = (1-2)/(0-4) = 1/4 mod 5 = 1·4 = 4   (4⁻¹=4)
+xr = 16-4-0 = 12 ≡ 2, yr = 4·(4-2)-2 = 6 ≡ 1
 3P = (2, 1)
 ```
 
-3P ≠ ∞. So order is not 1 or 3. Must be **9**.
+3P ≠ ∞ → order is not 1 or 3 → **Order of P = 9**
 
-**Order of P = 9** (P is a generator of E(F₅)!)
+P is a generator of E(F₅)!
 
 </details>
 
@@ -436,7 +433,7 @@ yr = 4·(4-2) - 2 = 8-2 = 6 ≡ 1 mod 5
 P=(1,2): Left=4, Right=1+2+1=4 mod 7 ✓
 Q=(0,1): Left=1, Right=0+0+1=1 mod 7 ✓
 
-**(b)** R = P + Q: computed above → **R = (0, 6)**
+**(b)** R = P + Q → **R = (0, 6)** (computed in Worked Example 2)
 
 **(c)** -R = (0, -6 mod 7) = **(0, 1)**
 
@@ -448,15 +445,16 @@ Q=(0,1): Left=1, Right=0+0+1=1 mod 7 ✓
 
 ## Summary — Point Addition Formula Sheet
 
-| Case | Condition | λ formula | R formula |
-|---|---|---|---|
-| P + Q, different x | xp ≠ xq | (yq-yp)·(xq-xp)⁻¹ mod p | (λ²-xp-xq, λ(xp-xr)-yp) |
-| 2P doubling | P=Q, yp≠0 | (3xp²+a)·(2yp)⁻¹ mod p | (λ²-2xp, λ(xp-xr)-yp) |
-| P=Q, yp=0 | P+P=∞ | — | ∞ |
-| Same x, P≠Q | xp=xq, P≠Q | — | ∞ |
+| Case | Condition | λ formula |
+|---|---|---|
+| P + Q, different x | xp ≠ xq | (yq-yp)·(xq-xp)⁻¹ mod p |
+| 2P doubling | P=Q, yp≠0 | (3xp²+a)·(2yp)⁻¹ mod p |
+| P+P=∞ | yp=0 | — |
+| P+Q=∞ | xp=xq, P≠Q | — |
 
-**yr formula is the same in all non-∞ cases:**
+**xr and yr are the same for all non-∞ cases:**
 ```
+xr = λ² - xp - xq  mod p    (use 2·xp for doubling)
 yr = λ·(xp - xr) - yp  mod p
 ```
 
@@ -468,8 +466,13 @@ yr = λ·(xp - xr) - yp  mod p
 
 ## Common Mistakes to Avoid
 
-1. **Forgetting -y mod p** → -3 mod 7 = 4, not -3
-2. **Division = modular inverse** → `a/b mod p` means `a · b⁻¹ mod p`
-3. **Field p matters** → always reduce mod p at each step
-4. **Using wrong λ** → Case 1 (P≠Q) vs Case 2 (P=Q) have different λ formulas
-5. **Negative numbers** → always convert to positive by adding p: -5 mod 7 = 2
+> [!warning] Top 5 mistakes on EC problems
+> 1. **Forgetting -y mod p** → -3 mod 7 = **4**, not -3
+> 2. **Division = modular inverse** → `a/b mod p` means `a · b⁻¹ mod p`
+> 3. **Wrong field** → always reduce mod p at each step
+> 4. **Wrong λ** → Case 1 (P≠Q) vs Case 2 (P=Q) have different numerators
+> 5. **Negative intermediate results** → add p to make positive: -5 mod 7 = 2
+
+---
+
+**Previous:** [[day2_DH_ElGamal_RSA_DSA]] | **Back to:** [[Home]]

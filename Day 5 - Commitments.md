@@ -53,6 +53,18 @@ $$c = g_1^w \cdot g_2^o \bmod p$$
 
 $$c = 2^3 \cdot 6^2 = 8 \cdot 3 = 24 \equiv 2 \pmod{11}$$
 
+**Exam-style example** (larger parameters — same procedure):
+
+$p = 41$, $g_1 = 5$, $g_2 = 10$, $w = 4$, $o = 3$
+
+$$c = 5^4 \cdot 10^3 \bmod 41 = 625 \cdot 1000 \bmod 41$$
+
+$625 \bmod 41 = 625 - 15 \cdot 41 = 625 - 615 = 10$
+
+$1000 \bmod 41 = 1000 - 24 \cdot 41 = 1000 - 984 = 16$
+
+$$c = 10 \cdot 16 = 160 \equiv 160 - 3 \cdot 41 = 160 - 123 = 37 \pmod{41}$$
+
 ---
 
 ### Why Perfectly Hiding

@@ -255,6 +255,14 @@ Order of P = smallest k s.t.  k·P = ∞
 
 Uses: `e(P, kP) = e(P, P)^k = g^k`
 
+**Only works with symmetric pairings** ($G_1 = G_2$).
+
+| Setup | Answer |
+|---|---|
+| $g=6$ in $\mathbb{Z}_{17}^*$, target $13$ | $k=5$ |
+| $g=6$ in $\mathbb{Z}_{17}^*$, target $11$ | $k=9$ |
+| $g=5$ in $\mathbb{Z}_{23}^*$, target $11$ | $k=9$ |
+
 ---
 
 ## Short Boneh-Boyen (SBB) Signature

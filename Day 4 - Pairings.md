@@ -67,6 +67,17 @@ Reduces the **ECDLP** to a standard DLP in $G_T$ (which is often easier to solve
 
 Therefore $a = 4$.
 
+### More Worked Cases
+
+| Setup | Generator powers (stop when match found) | Answer |
+|---|---|---|
+| $g=6$ in $\mathbb{Z}_{17}^*$, target $13$ | $6,2,12,5,\mathbf{13}$ | $k=5$ |
+| $g=6$ in $\mathbb{Z}_{17}^*$, target $11$ | $6,2,12,5,13,10,9,3,\mathbf{11}$ | $k=9$ |
+| $g=5$ in $\mathbb{Z}_{23}^*$, target $11$ | $5,2,10,4,20,8,17,16,\mathbf{11}$ | $k=9$ |
+
+> [!tip] Exam pattern
+> The exam gives you $e(P,P)$ and $e(P,kP)$ and asks for $k$. Just compute powers of the generator in $G_T$ until you hit the target. The matching exponent is $k$.
+
 > [!warning] MOV only works with symmetric pairings
 
 ### Practice Problem

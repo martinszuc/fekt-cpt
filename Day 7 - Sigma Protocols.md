@@ -96,6 +96,60 @@ Prover knows $w_1$ (not $w_2$). Key idea: **simulate** the unknown branch first.
 
 ---
 
+## PK Notation (Proof of Knowledge)
+
+Exam questions often give a protocol in compact notation and ask you to construct or fill in the full Sigma protocol.
+
+**Reading the notation:**
+
+$$PK\{(w_1, w_2, \ldots) : \text{statement about public values}\}$$
+
+- The values inside $\{\cdot\}$ before the colon are the **secret witnesses** the Prover knows.
+- The statement after the colon is what the Prover claims about public commitments.
+- Each clause connected by $\wedge$ (AND) maps to one branch of an AND-Schnorr protocol.
+
+---
+
+### Example from past exam
+
+**Task:** Construct a Sigma protocol for $PK\{(w_1, w_2) : C_1 = g_1^{w_1} \wedge C_2 = g_1^{w_1} \cdot g_2^{w_2}\}$
+
+**Reading it:**
+- Public: $C_1, C_2, g_1, g_2, p$
+- Secret: $w_1, w_2$
+- Claim 1: Prover knows $w_1$ such that $C_1 = g_1^{w_1}$
+- Claim 2: Prover knows $w_1, w_2$ such that $C_2 = g_1^{w_1} \cdot g_2^{w_2}$
+
+**Full protocol (AND-Schnorr):**
+
+| Prover | | Verifier |
+|---|---|---|
+| **Params:** $p$ prime, $q \mid \phi(p)$, $g_1, g_2$ of order $q$, public keys $C_1 = g_1^{w_1}$, $C_2 = g_1^{w_1} \cdot g_2^{w_2}$ | | |
+| $r_1, r_2 \in_R \mathbb{Z}_q \setminus \{0\}$ | | |
+| $c_1 = g_1^{r_1} \bmod p$ | | |
+| $c_2 = g_1^{r_1} \cdot g_2^{r_2} \bmod p$ | $\xrightarrow{c_1,\, c_2}$ | |
+| | $\xleftarrow{e}$ | $e \in_R \mathbb{Z}_q \setminus \{0\}$ |
+| $z_1 = (e \cdot w_1 + r_1) \bmod q$ | | |
+| $z_2 = (e \cdot w_2 + r_2) \bmod q$ | $\xrightarrow{z_1,\, z_2}$ | |
+| | | Check: $g_1^{z_1} \stackrel{?}{\equiv} C_1^e \cdot c_1 \pmod{p}$ |
+| | | Check: $g_1^{z_1} \cdot g_2^{z_2} \stackrel{?}{\equiv} C_2^e \cdot c_2 \pmod{p}$ |
+
+> [!warning] Note the second check
+> For $C_2 = g_1^{w_1} \cdot g_2^{w_2}$, the verification equation is $g_1^{z_1} \cdot g_2^{z_2} \equiv C_2^e \cdot c_2$, combining both responses. This is not two separate checks — it is one combined check for the compound commitment.
+
+---
+
+### General recipe: PK notation → Sigma protocol
+
+1. **Identify witnesses** (left of colon) → these become the $w_i$
+2. **Identify public commitments** (right of colon) → these become the $h_i$ / $C_i$
+3. **For each clause:** pick $r_i$, compute $c_i$ matching the structure of the commitment
+4. **Shared challenge** $e$ from Verifier
+5. **For each witness:** $z_i = (e \cdot w_i + r_i) \bmod q$
+6. **Verify:** for each clause, the verification equation mirrors the commitment structure with $z_i$ replacing $r_i$ and $h_i^e$ added
+
+---
+
 ## Quick Reference
 
 | Protocol | Prover proves | Key formulas |

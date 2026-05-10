@@ -5,6 +5,12 @@ aliases:
   - Index
 ---
 
+> [!danger] EXAM INTEL (from classmates)
+> **Confirmed this year:** Order of EC · Algebraic MAC · CL signature · Pedersen commitment
+> **Also likely:** MOV attack · Schnorr AND protocol · Blind RSA · PK proof of knowledge notation
+> **Format:** ~40 min · calculator · short computation tasks · parameters recycled from labs
+> **His favourites:** Schnorr, blind RSA, CL signature, MOV attack, Pedersen hiding/binding
+
 # 🔐 Cryptography — Map of Content
 
 > [!tip] How to use this vault

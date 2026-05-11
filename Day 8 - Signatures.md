@@ -78,15 +78,15 @@ Randomized signature: $\sigma' = (v', e, s')$
 
 $p=3$, $q=7$, $n=21$, $\phi(21) = 2 \cdot 6 = 12$, $A=2$, $B=4$, $C=5$, $m=5$, $e=5$, $s=2$
 
-| Step | Computation | Result |
-|---|---|---|
-| Find $v$ | $v^5 \equiv 2^5 \cdot 4^2 \cdot 5 \pmod{21}$ | $v = 10$ |
-| Check | $10^5 = 100000 \equiv 19 \pmod{21}$; $2^5 \cdot 4^2 \cdot 5 = 32 \cdot 16 \cdot 5 = 2560 \equiv 19$ ✓ | |
-| $\sigma$ | $(v, e, s)$ | $(10, 5, 2)$ |
-| Randomize $r=5$ | $v' = 10 \cdot 4^5 \bmod 21 = 10 \cdot 16 = 160$ | $v' = 13$ |
-| | $s' = 2 + 5 \cdot 5 = 27 \bmod 12$ | $s' = 3$ |
-| $\sigma'$ | $(v', e, s')$ | $(13, 5, 3)$ |
-| Verify $\sigma'$ | $13^5 \equiv 2^5 \cdot 4^3 \cdot 5 \pmod{21}$: $13 \equiv 13$ | ✓ |
+| Step             | Computation                                                                                           | Result       |
+| ---------------- | ----------------------------------------------------------------------------------------------------- | ------------ |
+| Find $v$         | $v^5 \equiv 2^5 \cdot 4^2 \cdot 5 \pmod{21}$                                                          | $v = 10$     |
+| Check            | $10^5 = 100000 \equiv 19 \pmod{21}$; $2^5 \cdot 4^2 \cdot 5 = 32 \cdot 16 \cdot 5 = 2560 \equiv 19$ ✓ |              |
+| $\sigma$         | $(v, e, s)$                                                                                           | $(10, 5, 2)$ |
+| Randomize $r=5$  | $v' = 10 \cdot 4^5 \bmod 21 = 10 \cdot 16 = 160$                                                      | $v' = 13$    |
+|                  | $s' = 2 + 5 \cdot 5 = 27 \bmod 12$                                                                    | $s' = 3$     |
+| $\sigma'$        | $(v', e, s')$                                                                                         | $(13, 5, 3)$ |
+| Verify $\sigma'$ | $13^5 \equiv 2^5 \cdot 4^3 \cdot 5 \pmod{21}$: $13 \equiv 13$                                         | ✓            |
 
 > [!warning] $s'$ is mod $\phi(n)$, **not** mod $n$
 > Here $s' = 2 + 5 \cdot 5 = 27 \equiv 3 \pmod{12}$, because $\phi(21) = 12$.

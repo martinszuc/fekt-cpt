@@ -69,11 +69,12 @@ Therefore $a = 4$.
 
 ### More Worked Cases
 
-| Setup | Generator powers (stop when match found) | Answer |
-|---|---|---|
-| $g=6$ in $\mathbb{Z}_{17}^*$, target $13$ | $6,2,12,5,\mathbf{13}$ | $k=5$ |
-| $g=6$ in $\mathbb{Z}_{17}^*$, target $11$ | $6,2,12,5,13,10,9,3,\mathbf{11}$ | $k=9$ |
-| $g=5$ in $\mathbb{Z}_{23}^*$, target $11$ | $5,2,10,4,20,8,17,16,\mathbf{11}$ | $k=9$ |
+| Setup                                     | Generator powers (stop when match found) | Answer |
+| ----------------------------------------- | ---------------------------------------- | ------ |
+| $g=6$ in $\mathbb{Z}_{17}^*$, target $13$ | $6,2,12,5,\mathbf{13}$                   | $k=5$  |
+| $g=6$ in $\mathbb{Z}_{17}^*$, target $11$ | $6,2,12,5,13,10,9,3,\mathbf{11}$         | $k=9$  |
+| $g=5$ in $\mathbb{Z}_{23}^*$, target $11$ | $5,2,10,4,20,8,17,16,\mathbf{11}$        | $k=9$  |
+|                                           |                                          |        |
 
 > [!tip] Exam pattern
 > The exam gives you $e(P,P)$ and $e(P,kP)$ and asks for $k$. Just compute powers of the generator in $G_T$ until you hit the target. The matching exponent is $k$.
@@ -84,22 +85,18 @@ Therefore $a = 4$.
 
 $e(P,P) = 6$ and $e(P, kP) = 13$ in $\mathbb{Z}_{17}^*$. Find $k$.
 
-<details>
-<summary>Solution</summary>
-
-Compute powers of 6 in $\mathbb{Z}_{17}^*$:
-
-| $i$ | $6^i \bmod 17$ |
-|---|---|
-| 1 | 6 |
-| 2 | 2 |
-| 3 | 12 |
-| 4 | 5 |
-| **5** | **13** ← match |
-
-Therefore $k = 5$.
-
-</details>
+> [!info]- Solution
+> Compute powers of 6 in $\mathbb{Z}_{17}^*$:
+>
+> | $i$ | $6^i \bmod 17$ |
+> |---|---|
+> | 1 | 6 |
+> | 2 | 2 |
+> | 3 | 12 |
+> | 4 | 5 |
+> | **5** | **13** ← match |
+>
+> Therefore $k = 5$.
 
 ---
 
